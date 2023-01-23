@@ -13,7 +13,7 @@ def start(message):
     btn2 = types.KeyboardButton('Образование')
     btn3 = types.KeyboardButton('Эбаут')
     markup.add(btn1,btn2,btn3)
-    greetings = f'Привет, <b>{message.from_user.first_name} {message.from_user.last_name}</b>\nПожалуйтса, воспользутесь навигацией ниже:'
+    greetings = f'Привет, <b>{message.from_user.first_name} {message.from_user.last_name}</b>\nПожалуйста, воспользутесь навигацией ниже:'
     bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup)
 
 @bot.message_handler(content_types=['text'])
