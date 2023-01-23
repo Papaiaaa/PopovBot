@@ -20,8 +20,12 @@ def start(message):
 def mess(message):
     get_message_bot = message.text.strip().lower()
     if get_message_bot == "резюме":
-        final_message = 'тут cv'
-        bot.send_message(message.chat.id, final_message, parse_mode='html')
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
+        btn1 = types.KeyboardButton('Вывести на экран')
+        btn2 = types.KeyboardButton('Скачать CV')
+        markup.add(btn1, btn2)
+        final_message = "Выбери один из вариантов ниже:"
+        bot.send_message(message.chat.id, final_message, reply_markup=markup)
 
     elif get_message_bot == "образование":
         final_message = 'тусур тгу'
