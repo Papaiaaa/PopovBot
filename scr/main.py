@@ -16,6 +16,20 @@ def start(message):
     greetings = f'Привет, <b>{message.from_user.first_name} {message.from_user.last_name}</b>'
     bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup)
 
+@bot.message_handler(content_types=['text'])
+def mess(message):
+    get_message_bot = message.text.strip().lower()
+    if get_message_bot == "резюме":
+        final_message = "тут резюме"
+        bot.send_message(message.chat.id, final_message, reply_markup=markup)
+
+    elif get_message_bot == "образование":
+        final_message = 'тусур тгу'
+        bot.send_message(message.chat.id, final_message, parse_mode='html')
+
+    elif get_message_bot == "обо мне":
+        final_message = 'обо мне</b>'
+        bot.send_message(message.chat.id, final_message, parse_mode='html')
 
 
 bot.polling(none_stop=True)
