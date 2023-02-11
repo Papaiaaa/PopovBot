@@ -11,7 +11,7 @@ def start(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
     btn1 = types.KeyboardButton('Резюме')
     btn2 = types.KeyboardButton('Образование')
-    btn3 = types.KeyboardButton('Эбаут')
+    btn3 = types.KeyboardButton('Обо мне')
     markup.add(btn1,btn2,btn3)
     greetings = f'Привет, <b>{message.from_user.first_name} {message.from_user.last_name}</b>\nПожалуйста, воспользутесь навигацией ниже:'
     bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup)
@@ -30,7 +30,7 @@ def mess(message):
     elif get_message_bot == "образование":
         final_message = 'тусур тгу'
         bot.send_message(message.chat.id, final_message, parse_mode='html')
-    elif get_message_bot == "эбаут":
+    elif get_message_bot == "обо мне":
         final_message = '123'
         bot.send_message(message.chat.id, final_message, parse_mode='html')
 bot.polling(none_stop=True)
