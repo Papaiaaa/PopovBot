@@ -76,7 +76,7 @@ def callme(message):
     response = requests.get(url=url)
     print(response.json())
     #
-    call_message = "В близжайшее время с Вами свяжутся"
+    call_message = "В ближайшее время с Вами свяжутся"
     bot.send_message(message.chat.id, call_message, reply_markup=markup, parse_mode='html')
 @bot.message_handler(content_types=['text'])
 def mess(message):
@@ -138,7 +138,7 @@ def mess(message):
         my_file = open("scr\who.txt", "a")
         my_file.write('@' + message.from_user.username + ' ' + current_datetime + '\n')
         my_file.close()
-        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=С Вами хочет свзяаться @'+ usder +' ' + message.from_user.first_name +' '+ message.from_user.last_name +'. Что ему нужно?'
+        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=С Вами хочет связаться @'+ usder +' ' + message.from_user.first_name +' '+ message.from_user.last_name +'. Что ему нужно?'
     #headers = {'ContentType': 'application/vnd.api+json', 'X-Auth-Token': token}
         response = requests.get(url=url)
         print(response.json())
