@@ -24,7 +24,8 @@ netology = edu.edu3_txt
 
 import contacts
 contact_message = contacts.contact
-
+import kb
+markup1 = kb.markup
 bot=telebot.TeleBot(TOKEN)
 current_datetime = str(datetime.now())
 @bot.message_handler(content_types=["sticker"])
@@ -34,15 +35,9 @@ def send_sticker(message):
 
 @bot.message_handler(commands=['start'])
 def start(message):
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
-    btn1 = types.KeyboardButton('Резюме')
-    btn2 = types.KeyboardButton('Образование')
-    btn3 = types.KeyboardButton('Обо мне')
-    btn4 = types.KeyboardButton('Контакты')
-    markup.add(btn1,btn2,btn3,btn4)
     #markup = types.ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton('Отправить свой контакт ☎️', request_contact=True)).add(KeyboardButton('Резюме', request_contact=True)).add(KeyboardButton('Резюме', request_contact=True)).add(KeyboardButton('Резюме', request_contact=True))
     greetings = f'Привет, <b>{message.from_user.first_name} {message.from_user.last_name}</b>\nПожалуйста, воспользутесь навигацией ниже:'
-    bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup)
+    bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup1)
 
 @bot.message_handler(commands=['education'])
 def education(message):
@@ -124,14 +119,8 @@ def mess(message):
         markup.add(types.InlineKeyboardButton("Скачать", url="https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D1%82%D0%B0%D0%BD"))
         bot.send_message(message.chat.id, 'Резюме', parse_mode='html', reply_markup=markup)
     elif get_message_bot == "главное меню":
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
-        btn1 = types.KeyboardButton('Резюме')
-        btn2 = types.KeyboardButton('Образование')
-        btn3 = types.KeyboardButton('Обо мне')
-        btn4 = types.KeyboardButton('Контакты')
-        markup.add(btn1, btn2, btn3, btn4)
         greetings = f'Пожалуйста, воспользутесь навигацией ниже:'
-        bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup)
+        bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup1)
 
 #bot.polling(none_stop=True)
 
