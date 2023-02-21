@@ -1,5 +1,5 @@
 import time
-
+import requests
 import telebot
 from telebot import types
 
@@ -57,7 +57,7 @@ def about(message):
 @bot.message_handler(commands=['contacts'])
 def contacts(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
-    btn1 = types.KeyboardButton('Обратная свзяь')
+    btn1 = types.KeyboardButton('Обратная связь')
     markup.add(btn1)
     bot.send_message(message.chat.id, contact_message, reply_markup=markup,  parse_mode='html')
 @bot.message_handler(commands=['callme'])
@@ -71,6 +71,11 @@ def callme(message):
     my_file = open("scr\who.txt", "a")
     my_file.write('@' + message.from_user.username + ' ' + current_datetime + '\n')
     my_file.close()
+    url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=С Вами хочет свзяаться @'+ usder +' . Что ему нужно?'
+    #headers = {'ContentType': 'application/vnd.api+json', 'X-Auth-Token': token}
+    response = requests.get(url=url)
+    print(response.json())
+    #
     call_message = "В близжайшее время с Вами свяжутся"
     bot.send_message(message.chat.id, call_message, reply_markup=markup, parse_mode='html')
 @bot.message_handler(content_types=['text'])
@@ -110,9 +115,10 @@ def mess(message):
         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAICN2Ps_Hk-5KQSleM2IZPnHn0jt2i_AAI_JAAC0KlpS55w2_0wCx3dLgQ')
         bot.send_message(message.chat.id, netology, parse_mode='html')
     elif get_message_bot == "контакты":
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
-        btn1 = types.KeyboardButton('Обратная свзяь')
-        markup.add(btn1)
+        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
+        btn1 = types.KeyboardButton("Обратная связь")
+        btn2 = types.KeyboardButton('Главное Меню')
+        markup.add(btn1,btn2)
         bot.send_message(message.chat.id, contact_message, reply_markup=markup, parse_mode='html')
     elif get_message_bot == "скачать cv":
         markup = types.InlineKeyboardMarkup()
@@ -121,7 +127,21 @@ def mess(message):
     elif get_message_bot == "главное меню":
         greetings = f'Пожалуйста, воспользутесь навигацией ниже:'
         bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup1)
-
+    elif get_message_bot == "обратная связь":
+        usder = message.from_user.username
+        print(usder)
+        print(current_datetime)
+        print(message.from_user.first_name)
+        print(message.from_user.last_name)
+        my_file = open("scr\who.txt", "a")
+        my_file.write('@' + message.from_user.username + ' ' + current_datetime + '\n')
+        my_file.close()
+        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=С Вами хочет свзяаться @'+ usder +' ' + message.from_user.first_name +' '+ message.from_user.last_name +'. Что ему нужно?'
+    #headers = {'ContentType': 'application/vnd.api+json', 'X-Auth-Token': token}
+        response = requests.get(url=url)
+        print(response.json())
+        call_message = "В ближайшее время с Вами свяжутся"
+        bot.send_message(message.chat.id, call_message, parse_mode='html')
 #bot.polling(none_stop=True)
 
 while True:
