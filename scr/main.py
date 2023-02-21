@@ -128,7 +128,9 @@ def mess(message):
         greetings = f'Пожалуйста, воспользутесь навигацией ниже:'
         bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup1)
     elif get_message_bot == "обратная связь":
-        usder = message.from_user.username
+        usder = str(message.from_user.username)
+        message.from_user.first_name = str(message.from_user.first_name)
+        message.from_user.last_name = str(message.from_user.last_name)
         print(usder)
         print(current_datetime)
         print(message.from_user.first_name)
