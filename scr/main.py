@@ -26,6 +26,10 @@ import contacts
 contact_message = contacts.contact
 import kb
 markup1 = kb.markup
+markup2 = kb.markup2
+markup3 = kb.markup3
+markup4 = kb.markup4
+
 bot=telebot.TeleBot(TOKEN)
 current_datetime = str(datetime.now())
 @bot.message_handler(content_types=["sticker"])
@@ -41,14 +45,8 @@ def start(message):
 
 @bot.message_handler(commands=['education'])
 def education(message):
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
-    btn1 = types.KeyboardButton('ТУСУР `11')
-    btn2 = types.KeyboardButton('ТГУ `15')
-    btn3 = types.KeyboardButton('Нетология `22')
-    btn4 = types.KeyboardButton('Главное Меню')
-    markup.add(btn1,btn2,btn3,btn4)
     final_message = "Выбери один из вариантов ниже:"
-    bot.send_message(message.chat.id, final_message, reply_markup=markup)
+    bot.send_message(message.chat.id, final_message, reply_markup=markup2)
 @bot.message_handler(commands=['about'])
 def about(message):
     bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBBGPstpI2hketg-noGW2wYZZs9fxfAALPIgACbKNpS3eQe7GdYF-_LgQ')
@@ -56,10 +54,12 @@ def about(message):
 
 @bot.message_handler(commands=['contacts'])
 def contacts(message):
-    markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
-    btn1 = types.KeyboardButton('Обратная связь')
-    markup.add(btn1)
-    bot.send_message(message.chat.id, contact_message, reply_markup=markup,  parse_mode='html')
+    bot.send_message(message.chat.id, contact_message, reply_markup=markup3,  parse_mode='html')
+
+@bot.message_handler(commands=['cv'])
+def contacts(message):
+    final_message = "Выбери один из вариантов ниже:"
+    bot.send_message(message.chat.id, final_message, reply_markup=markup4,  parse_mode='html')
 @bot.message_handler(commands=['callme'])
 def callme(message):
     markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
@@ -82,23 +82,12 @@ def callme(message):
 def mess(message):
     get_message_bot = message.text.strip().lower()
     if get_message_bot == "резюме":
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=2)
-        btn1 = types.KeyboardButton('Вывести на экран')
-        btn2 = types.KeyboardButton('Скачать CV')
-        btn3 = types.KeyboardButton('Главное Меню')
-        markup.add(btn1, btn2, btn3)
         final_message = "Выбери один из вариантов ниже:"
-        bot.send_message(message.chat.id, final_message, reply_markup=markup)
+        bot.send_message(message.chat.id, final_message, reply_markup=markup4)
 
     elif get_message_bot == "образование":
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=3)
-        btn1 = types.KeyboardButton('ТУСУР `11')
-        btn2 = types.KeyboardButton('ТГУ `15')
-        btn3 = types.KeyboardButton('Нетология `22')
-        btn4 = types.KeyboardButton('Главное Меню')
-        markup.add(btn1, btn2, btn3, btn4)
         final_message = "Выбери один из вариантов ниже:"
-        bot.send_message(message.chat.id, final_message, reply_markup=markup)
+        bot.send_message(message.chat.id, final_message, reply_markup=markup2)
 
     elif get_message_bot == "обо мне":
         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBBGPstpI2hketg-noGW2wYZZs9fxfAALPIgACbKNpS3eQe7GdYF-_LgQ')
@@ -115,14 +104,10 @@ def mess(message):
         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAICN2Ps_Hk-5KQSleM2IZPnHn0jt2i_AAI_JAAC0KlpS55w2_0wCx3dLgQ')
         bot.send_message(message.chat.id, netology, parse_mode='html')
     elif get_message_bot == "контакты":
-        markup = types.ReplyKeyboardMarkup(resize_keyboard=True, row_width=1)
-        btn1 = types.KeyboardButton("Обратная связь")
-        btn2 = types.KeyboardButton('Главное Меню')
-        markup.add(btn1,btn2)
-        bot.send_message(message.chat.id, contact_message, reply_markup=markup, parse_mode='html')
+        bot.send_message(message.chat.id, contact_message, reply_markup=markup3, parse_mode='html')
     elif get_message_bot == "скачать cv":
         markup = types.InlineKeyboardMarkup()
-        markup.add(types.InlineKeyboardButton("Скачать", url="https://ru.wikipedia.org/wiki/%D0%9A%D0%B0%D0%B7%D0%B0%D1%85%D1%81%D1%82%D0%B0%D0%BD"))
+        markup.add(types.InlineKeyboardButton("Скачать", url="https://hh.ru/resume_converter/%D0%9F%D0%BE%D0%BF%D0%BE%D0%B2%20%D0%A0%D0%BE%D0%BC%D0%B0%D0%BD.pdf?hash=e12743f0ff0b7bcfee0039ed1f573469477765&type=pdf&hhtmSource=resume&hhtmFrom=resume_list"))
         bot.send_message(message.chat.id, 'Резюме', parse_mode='html', reply_markup=markup)
     elif get_message_bot == "главное меню":
         greetings = f'Пожалуйста, воспользутесь навигацией ниже:'
