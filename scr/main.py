@@ -5,8 +5,8 @@ import requests
 import telebot
 from telebot import types
 
-from datetime import datetime, time, date
-
+#from datetime import datetime
+import datetime
 import config
 TOKEN =config.TOKEN1
 
@@ -35,8 +35,8 @@ markup5 = kb.markup5
 
 
 bot=telebot.TeleBot(TOKEN)
-current_datetime = str(datetime.now())
-
+#current_datetime = str(datetime.now())
+current_datetime = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
 @bot.message_handler(content_types=["sticker"])
 def send_sticker(message):
     sticker_id = message.sticker.file_id
@@ -51,8 +51,8 @@ def start(message):
     response = requests.get(url=url)
     print(response.json())
     ##################
-    my_file = open("scr/abtest.txt", "a")
-    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /start\n')
+    my_file = open("scr/abtest.csv", "a")
+    my_file.write('@' + message.from_user.username + ',' + current_datetime + ',/start\n')
     my_file.close()
     ##################
     #markup = types.ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton('Отправить свой контакт ☎️', request_contact=True)).add(KeyboardButton('Резюме', request_contact=True)).add(KeyboardButton('Резюме', request_contact=True)).add(KeyboardButton('Резюме', request_contact=True))
@@ -68,8 +68,8 @@ def education(message):
     response = requests.get(url=url)
     print(response.json())
     ##################
-    my_file = open("scr/abtest.txt", "a")
-    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /education\n')
+    my_file = open("scr/abtest.csv", "a")
+    my_file.write('@' + message.from_user.username + ',' + current_datetime + ',/education\n')
     my_file.close()
     ##################
     final_message = "Выбери один из вариантов ниже:"
@@ -83,8 +83,8 @@ def about(message):
     response = requests.get(url=url)
     print(response.json())
     ##################
-    my_file = open("scr/abtest.txt", "a")
-    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /about\n')
+    my_file = open("scr/abtest.csv", "a")
+    my_file.write('@' + message.from_user.username + ',' + current_datetime + ',/about\n')
     my_file.close()
     ##################
     bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBBGPstpI2hketg-noGW2wYZZs9fxfAALPIgACbKNpS3eQe7GdYF-_LgQ')
@@ -99,8 +99,8 @@ def contacts(message):
     response = requests.get(url=url)
     print(response.json())
     ##################
-    my_file = open("scr/abtest.txt", "a")
-    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /contacts\n')
+    my_file = open("scr/abtest.csv", "a")
+    my_file.write('@' + message.from_user.username + ',' + current_datetime + ',/contacts\n')
     my_file.close()
     ##################
     bot.send_message(message.chat.id, contact_message, reply_markup=markup3,  parse_mode='html')
@@ -114,8 +114,8 @@ def contacts(message):
     response = requests.get(url=url)
     print(response.json())
     ##################
-    my_file = open("scr/abtest.txt", "a")
-    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /cv\n')
+    my_file = open("scr/abtest.csv", "a")
+    my_file.write('@' + message.from_user.username + ',' + current_datetime + ',/cv\n')
     my_file.close()
     ##################
     final_message = "Выбери один из вариантов ниже:"
@@ -134,8 +134,8 @@ def callme(message):
     my_file.write('@' + message.from_user.username + ' ' + current_datetime + '\n')
     my_file.close()
     ##################
-    my_file = open("scr/abtest.txt", "a")
-    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /callme\n')
+    my_file = open("scr/abtest.csv", "a")
+    my_file.write('@' + message.from_user.username + ',' + current_datetime + ',/callme\n')
     my_file.close()
     ##################
     url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=С Вами хочет свзяаться @'+ usder +' . Что ему нужно?'
@@ -156,8 +156,8 @@ def mess(message):
         response = requests.get(url=url)
         print(response.json())
         ##################
-        my_file = open("scr/abtest.txt", "a")
-        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; резюме\n')
+        my_file = open("scr/abtest.csv", "a")
+        my_file.write('@' + message.from_user.username + ',' + current_datetime + ',резюме\n')
         my_file.close()
         ##################
         final_message = "Выбери один из вариантов ниже:"
@@ -171,8 +171,8 @@ def mess(message):
         response = requests.get(url=url)
         print(response.json())
         ##################
-        my_file = open("scr/abtest.txt", "a")
-        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; образование\n')
+        my_file = open("scr/abtest.csv", "a")
+        my_file.write('@' + message.from_user.username + ',' + current_datetime + ',образование\n')
         my_file.close()
         ##################
         final_message = "Выбери один из вариантов ниже:"
@@ -186,8 +186,8 @@ def mess(message):
         response = requests.get(url=url)
         print(response.json())
         ##################
-        my_file = open("scr/abtest.txt", "a")
-        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; обо мне\n')
+        my_file = open("scr/abtest.csv", "a")
+        my_file.write('@' + message.from_user.username + ',' + current_datetime + ',обо мне\n')
         my_file.close()
         ##################
         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBBGPstpI2hketg-noGW2wYZZs9fxfAALPIgACbKNpS3eQe7GdYF-_LgQ')
@@ -200,8 +200,8 @@ def mess(message):
         response = requests.get(url=url)
         print(response.json())
         ##################
-        my_file = open("scr/abtest.txt", "a")
-        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; вывести на экран\n')
+        my_file = open("scr/abtest.csv", "a")
+        my_file.write('@' + message.from_user.username + ',' + current_datetime + ',вывести на экран\n')
         my_file.close()
         ##################
         final_message = "Выбери один из вариантов ниже:"
@@ -228,8 +228,8 @@ def mess(message):
         bot.send_message(message.chat.id, netology, parse_mode='html')
     elif get_message_bot == "контакты":
         ##################
-        my_file = open("scr/abtest.txt", "a")
-        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; контакты\n')
+        my_file = open("scr/abtest.csv", "a")
+        my_file.write('@' + message.from_user.username + ',' + current_datetime + ',контакты\n')
         my_file.close()
         ##################
         bot.send_message(message.chat.id, contact_message, reply_markup=markup3, parse_mode='html')
@@ -241,8 +241,8 @@ def mess(message):
         response = requests.get(url=url)
         print(response.json())
         ##################
-        my_file = open("scr/abtest.txt", "a")
-        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; скачать cv\n')
+        my_file = open("scr/abtest.csv", "a")
+        my_file.write('@' + message.from_user.username + ',' + current_datetime + ',скачать cv\n')
         my_file.close()
         ##################
         markup = types.InlineKeyboardMarkup()
@@ -267,8 +267,8 @@ def mess(message):
         response = requests.get(url=url)
         print(response.json())
         ##################
-        my_file = open("scr/abtest.txt", "a")
-        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; обратная связь\n')
+        my_file = open("scr/abtest.csv", "a")
+        my_file.write('@' + message.from_user.username + ',' + current_datetime + ',обратная связь\n')
         my_file.close()
         ##################
         call_message = "В ближайшее время с Вами свяжутся"
