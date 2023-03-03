@@ -1,4 +1,6 @@
 import time
+from email import message
+
 import requests
 import telebot
 from telebot import types
@@ -36,8 +38,10 @@ markup3 = kb.markup3
 markup4 = kb.markup4
 markup5 = kb.markup5
 
+
 bot=telebot.TeleBot(TOKEN)
 current_datetime = str(datetime.now())
+
 @bot.message_handler(content_types=["sticker"])
 def send_sticker(message):
     sticker_id = message.sticker.file_id
@@ -72,6 +76,8 @@ def callme(message):
     btn1 = types.KeyboardButton('Обратная свзяь')
     markup.add(btn1)
     usder = message.from_user.username
+    message.from_user.first_name = str(message.from_user.first_name)
+    message.from_user.last_name = str(message.from_user.last_name)
     print(usder)
     print(current_datetime)
     my_file = open("scr\who.txt", "a")
@@ -102,8 +108,7 @@ def mess(message):
         usder = message.from_user.username
         message.from_user.first_name = str(message.from_user.first_name)
         message.from_user.last_name = str(message.from_user.last_name)
-        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder +' ' + message.from_user.first_name +' '+ message.from_user.last_name +' . нажал Вывести на экран CV'
-        # headers = {'ContentType': 'application/vnd.api+json', 'X-Auth-Token': token}
+        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder +' ' + message.from_user.first_name +' '+ message.from_user.last_name +' нажал кнопку Вывести на экран CV'
         response = requests.get(url=url)
         print(response.json())
         final_message = "Выбери один из вариантов ниже:"
