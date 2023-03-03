@@ -5,15 +5,10 @@ import requests
 import telebot
 from telebot import types
 
-
-from datetime import datetime
-
-from telebot.types import KeyboardButton
+from datetime import datetime, time, date
 
 import config
 TOKEN =config.TOKEN1
-
-import pyperclip
 
 import about
 about_message = about.about_txt
@@ -49,25 +44,80 @@ def send_sticker(message):
 
 @bot.message_handler(commands=['start'])
 def start(message):
+    usder = message.from_user.username
+    message.from_user.first_name = str(message.from_user.first_name)
+    message.from_user.last_name = str(message.from_user.last_name)
+    url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder + ' ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' воспользовался командой /start'
+    response = requests.get(url=url)
+    print(response.json())
+    ##################
+    my_file = open("scr/abtest.txt", "a")
+    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /start\n')
+    my_file.close()
+    ##################
     #markup = types.ReplyKeyboardMarkup(resize_keyboard=True).add(KeyboardButton('Отправить свой контакт ☎️', request_contact=True)).add(KeyboardButton('Резюме', request_contact=True)).add(KeyboardButton('Резюме', request_contact=True)).add(KeyboardButton('Резюме', request_contact=True))
     greetings = f'Привет, <b>{message.from_user.first_name} {message.from_user.last_name}</b>\nПожалуйста, воспользутесь навигацией ниже:'
     bot.send_message(message.chat.id, greetings, parse_mode='html', reply_markup=markup1)
 
 @bot.message_handler(commands=['education'])
 def education(message):
+    usder = message.from_user.username
+    message.from_user.first_name = str(message.from_user.first_name)
+    message.from_user.last_name = str(message.from_user.last_name)
+    url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder + ' ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' воспользовался командой /education'
+    response = requests.get(url=url)
+    print(response.json())
+    ##################
+    my_file = open("scr/abtest.txt", "a")
+    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /education\n')
+    my_file.close()
+    ##################
     final_message = "Выбери один из вариантов ниже:"
     bot.send_message(message.chat.id, final_message, reply_markup=markup2)
 @bot.message_handler(commands=['about'])
 def about(message):
+    usder = message.from_user.username
+    message.from_user.first_name = str(message.from_user.first_name)
+    message.from_user.last_name = str(message.from_user.last_name)
+    url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder + ' ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' воспользовался командой /about Обо мне'
+    response = requests.get(url=url)
+    print(response.json())
+    ##################
+    my_file = open("scr/abtest.txt", "a")
+    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /about\n')
+    my_file.close()
+    ##################
     bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBBGPstpI2hketg-noGW2wYZZs9fxfAALPIgACbKNpS3eQe7GdYF-_LgQ')
     bot.send_message(message.chat.id, about_message, parse_mode='html')
 
 @bot.message_handler(commands=['contacts'])
 def contacts(message):
+    usder = message.from_user.username
+    message.from_user.first_name = str(message.from_user.first_name)
+    message.from_user.last_name = str(message.from_user.last_name)
+    url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder + ' ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' воспользовался командой /contact'
+    response = requests.get(url=url)
+    print(response.json())
+    ##################
+    my_file = open("scr/abtest.txt", "a")
+    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /contacts\n')
+    my_file.close()
+    ##################
     bot.send_message(message.chat.id, contact_message, reply_markup=markup3,  parse_mode='html')
 
 @bot.message_handler(commands=['cv'])
 def contacts(message):
+    usder = message.from_user.username
+    message.from_user.first_name = str(message.from_user.first_name)
+    message.from_user.last_name = str(message.from_user.last_name)
+    url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder + ' ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' воспользовался командой /cv'
+    response = requests.get(url=url)
+    print(response.json())
+    ##################
+    my_file = open("scr/abtest.txt", "a")
+    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /cv\n')
+    my_file.close()
+    ##################
     final_message = "Выбери один из вариантов ниже:"
     bot.send_message(message.chat.id, final_message, reply_markup=markup4,  parse_mode='html')
 @bot.message_handler(commands=['callme'])
@@ -83,6 +133,11 @@ def callme(message):
     my_file = open("scr\who.txt", "a")
     my_file.write('@' + message.from_user.username + ' ' + current_datetime + '\n')
     my_file.close()
+    ##################
+    my_file = open("scr/abtest.txt", "a")
+    my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; /callme\n')
+    my_file.close()
+    ##################
     url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=С Вами хочет свзяаться @'+ usder +' . Что ему нужно?'
     #headers = {'ContentType': 'application/vnd.api+json', 'X-Auth-Token': token}
     response = requests.get(url=url)
@@ -94,14 +149,47 @@ def callme(message):
 def mess(message):
     get_message_bot = message.text.strip().lower()
     if get_message_bot == "резюме":
+        usder = message.from_user.username
+        message.from_user.first_name = str(message.from_user.first_name)
+        message.from_user.last_name = str(message.from_user.last_name)
+        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder + ' ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' нажал на кнопку Резюме'
+        response = requests.get(url=url)
+        print(response.json())
+        ##################
+        my_file = open("scr/abtest.txt", "a")
+        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; резюме\n')
+        my_file.close()
+        ##################
         final_message = "Выбери один из вариантов ниже:"
         bot.send_message(message.chat.id, final_message, reply_markup=markup4)
 
     elif get_message_bot == "образование":
+        usder = message.from_user.username
+        message.from_user.first_name = str(message.from_user.first_name)
+        message.from_user.last_name = str(message.from_user.last_name)
+        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder + ' ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' нажал на кнопку ОБРАЗОВАНИЕ'
+        response = requests.get(url=url)
+        print(response.json())
+        ##################
+        my_file = open("scr/abtest.txt", "a")
+        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; образование\n')
+        my_file.close()
+        ##################
         final_message = "Выбери один из вариантов ниже:"
         bot.send_message(message.chat.id, final_message, reply_markup=markup2)
 
     elif get_message_bot == "обо мне":
+        usder = message.from_user.username
+        message.from_user.first_name = str(message.from_user.first_name)
+        message.from_user.last_name = str(message.from_user.last_name)
+        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder + ' ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' нажал на кнопку ОБО МНЕ'
+        response = requests.get(url=url)
+        print(response.json())
+        ##################
+        my_file = open("scr/abtest.txt", "a")
+        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; обо мне\n')
+        my_file.close()
+        ##################
         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBBGPstpI2hketg-noGW2wYZZs9fxfAALPIgACbKNpS3eQe7GdYF-_LgQ')
         bot.send_message(message.chat.id, about_message, parse_mode='html')
     elif get_message_bot == "вывести на экран":
@@ -111,6 +199,11 @@ def mess(message):
         url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder +' ' + message.from_user.first_name +' '+ message.from_user.last_name +' нажал кнопку Вывести на экран CV'
         response = requests.get(url=url)
         print(response.json())
+        ##################
+        my_file = open("scr/abtest.txt", "a")
+        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; вывести на экран\n')
+        my_file.close()
+        ##################
         final_message = "Выбери один из вариантов ниже:"
         bot.send_message(message.chat.id, final_message, reply_markup=markup5)
         #bot.send_message(message.chat.id, exp_message, parse_mode='html')
@@ -134,8 +227,24 @@ def mess(message):
         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAICN2Ps_Hk-5KQSleM2IZPnHn0jt2i_AAI_JAAC0KlpS55w2_0wCx3dLgQ')
         bot.send_message(message.chat.id, netology, parse_mode='html')
     elif get_message_bot == "контакты":
+        ##################
+        my_file = open("scr/abtest.txt", "a")
+        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; контакты\n')
+        my_file.close()
+        ##################
         bot.send_message(message.chat.id, contact_message, reply_markup=markup3, parse_mode='html')
     elif get_message_bot == "скачать cv":
+        usder = message.from_user.username
+        message.from_user.first_name = str(message.from_user.first_name)
+        message.from_user.last_name = str(message.from_user.last_name)
+        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder + ' ' + message.from_user.first_name + ' ' + message.from_user.last_name + ' нажал на кнопку СКАЧАТЬ Резюме'
+        response = requests.get(url=url)
+        print(response.json())
+        ##################
+        my_file = open("scr/abtest.txt", "a")
+        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; скачать cv\n')
+        my_file.close()
+        ##################
         markup = types.InlineKeyboardMarkup()
         markup.add(types.InlineKeyboardButton("Скачать", url="https://hh.ru/resume_converter/%D0%9F%D0%BE%D0%BF%D0%BE%D0%B2%20%D0%A0%D0%BE%D0%BC%D0%B0%D0%BD.pdf?hash=e12743f0ff0b7bcfee0039ed1f573469477765&type=pdf&hhtmSource=resume&hhtmFrom=resume_list"))
         bot.send_message(message.chat.id, 'Резюме', parse_mode='html', reply_markup=markup)
@@ -157,6 +266,11 @@ def mess(message):
     #headers = {'ContentType': 'application/vnd.api+json', 'X-Auth-Token': token}
         response = requests.get(url=url)
         print(response.json())
+        ##################
+        my_file = open("scr/abtest.txt", "a")
+        my_file.write('@' + message.from_user.username + '; ' + current_datetime + '; обратная связь\n')
+        my_file.close()
+        ##################
         call_message = "В ближайшее время с Вами свяжутся"
         bot.send_message(message.chat.id, call_message, parse_mode='html')
 #bot.polling(none_stop=True)
