@@ -17,6 +17,11 @@ import about
 about_message = about.about_txt
 import exp
 exp_message = exp.exp_txt
+exp_ase_message = exp.exp_ase_txt
+exp_contek_message = exp.exp_contek_txt
+exp_it_message = exp.exp_it_txt
+exp_all_message = exp_message + exp_ase_message + exp_it_message + exp_contek_message
+#print(exp_all_message)
 import edu
 tusur = edu.edu1_txt
 tsu = edu.edu2_txt
@@ -29,6 +34,7 @@ markup1 = kb.markup
 markup2 = kb.markup2
 markup3 = kb.markup3
 markup4 = kb.markup4
+markup5 = kb.markup5
 
 bot=telebot.TeleBot(TOKEN)
 current_datetime = str(datetime.now())
@@ -93,7 +99,19 @@ def mess(message):
         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBBGPstpI2hketg-noGW2wYZZs9fxfAALPIgACbKNpS3eQe7GdYF-_LgQ')
         bot.send_message(message.chat.id, about_message, parse_mode='html')
     elif get_message_bot == "вывести на экран":
+        final_message = "Выбери один из вариантов ниже:"
+        bot.send_message(message.chat.id, final_message, reply_markup=markup5)
+        #bot.send_message(message.chat.id, exp_message, parse_mode='html')
+    elif get_message_bot == "газпром инвест томск `22":
         bot.send_message(message.chat.id, exp_message, parse_mode='html')
+    elif get_message_bot == "атомстройэкспорт в нр бангладеш `19":
+        bot.send_message(message.chat.id, exp_ase_message, parse_mode='html')
+    elif get_message_bot == "зао айти `15":
+        bot.send_message(message.chat.id, exp_it_message, parse_mode='html')
+    elif get_message_bot == "ооо контек-софт `15":
+        bot.send_message(message.chat.id, exp_contek_message, parse_mode='html')
+    elif get_message_bot == "вывести всю информацию":
+        bot.send_message(message.chat.id, exp_all_message, parse_mode='html')
     elif get_message_bot == "тусур `11":
         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBBmPstpQHEeNaYTHHLqFrmY8Qq9TyAAJ2JgACS_FpS54nHFUr5pb2LgQ')
         bot.send_message(message.chat.id, tusur, parse_mode='html')
