@@ -99,6 +99,13 @@ def mess(message):
         bot.send_sticker(message.chat.id, 'CAACAgIAAxkBAAIBBGPstpI2hketg-noGW2wYZZs9fxfAALPIgACbKNpS3eQe7GdYF-_LgQ')
         bot.send_message(message.chat.id, about_message, parse_mode='html')
     elif get_message_bot == "вывести на экран":
+        usder = message.from_user.username
+        message.from_user.first_name = str(message.from_user.first_name)
+        message.from_user.last_name = str(message.from_user.last_name)
+        url = 'https://api.telegram.org/bot5828319410:AAGeWWFB9UV_tUmyyw6RQ6dm_cINQRL-Aa4/sendMessage?chat_id=145845542&text=Пользователь @' + usder +' ' + message.from_user.first_name +' '+ message.from_user.last_name +' . нажал Вывести на экран CV'
+        # headers = {'ContentType': 'application/vnd.api+json', 'X-Auth-Token': token}
+        response = requests.get(url=url)
+        print(response.json())
         final_message = "Выбери один из вариантов ниже:"
         bot.send_message(message.chat.id, final_message, reply_markup=markup5)
         #bot.send_message(message.chat.id, exp_message, parse_mode='html')
